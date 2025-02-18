@@ -22,12 +22,12 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-#### SCREENSHOTS OF WEBSITE
+## SCREENSHOTS OF WEBSITE
 
-# Login page
+### Login page
 ![Screenshot from 2025-02-18 13-30-55](https://github.com/user-attachments/assets/402f9a55-662d-4218-8425-e29a42c283fe)
 
-## Home page
+### Home page
 ![Screenshot from 2025-02-18 13-50-09](https://github.com/user-attachments/assets/e237fa8e-5dff-461a-a010-a5f1763b8e8f)
 
 
