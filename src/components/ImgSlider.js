@@ -2,17 +2,24 @@ import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-
+// caraousel is simply a slider used to display images videos and many more things in cyclic manner
 const ImgSlider = () => {
     let settings = {
+        // enables navigation dots at the bottom of the carousel.
         dots: true,
+        // slider will never end 
         infintie: true,
+        // slide changes after every 500 millisecoonds
         speed: 500,
+        // only one slide is visible at a time.
         slidesToShow: 1,
+        // scroll 1 slide at a time 
         slidesToScroll: 1,
         autoplay: true,
     };
     return (
+        // In this carousel or slider, I am applying the settings which I gave above
+        // using the spread syntax to apply all the properties inside the settings object to the Carousel component, which will control the behavior of the slider.
         <Carousel {...settings}>
             <Wrap>
                 <a>

@@ -21,5 +21,4 @@ const provider = new GoogleAuthProvider();
 const storage = getStorage(firebaseApp);
 
 export {auth, provider, storage };
-export default db;
-export {collection, onSnapshot };
+export {db, collection, onSnapshot };

@@ -2,20 +2,25 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+// handles login with google
 import {auth, provider} from "../firebase";
 import { selectUserName,  selectUserPhoto, setSignOutState, setUserLoginDetails, } from "../features/user/userSlice";
+// opens a google login popup
 import { signInWithPopup } from "firebase/auth";
 
 
 const Header = (props) => {
     const dispatch = useDispatch();
+    // used to navigate between pages
     const navigate = useNavigate();
+    // Fetches the logged-in user's name and profile picture from Redux.
     const userName = useSelector(selectUserName);
     const userPhoto = useSelector(selectUserPhoto);
 
-    // this function only works when username will updated
+    // this function only works when username will changes
     useEffect(() => {
         auth.onAuthStateChanged(async (user) => {
+            // if user already logged in then it will navigate to home page and call function setuser to save user details
             if(user){
                 setUser(user);
                 navigate("/home");
@@ -23,7 +28,12 @@ const Header = (props) => {
         });
     }, [userName]);
 
+    // it handle login/logout 
     const handleAuth = () => {
+        // if the user is not logged in then it opens a google login popup and if loginis successful then call set user function to saveuser details
+        // show an alert if login fails
+        // if the user is already logged in then it will logs out the user and reset user state in redux and it redirect the user to the login page
+
         if(!userName) {
         signInWithPopup(auth, provider).then((result) => { 
               setUser(result.user);})
@@ -53,6 +63,8 @@ const Header = (props) => {
                 <img src="/images/logo.svg" alt="Disney+" />
             </Logo>
 
+            {/* if username is not logged in then it will show login button and and on clicking it it call handle auth function */}
+            {/* if username is logged in it will show navigation menu and sign out button */}
             {!userName ? (
                <Login onClick={handleAuth}>Login</Login>
             )  : ( 

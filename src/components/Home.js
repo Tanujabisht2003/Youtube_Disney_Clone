@@ -14,13 +14,14 @@ import { selectUserName } from "../features/user/userSlice";
 const Home = (props) => {
     const dispatch = useDispatch();
     const userName = useSelector(selectUserName);
+    // initialize variable as empty array
     let recommends = [];
     let newDisneys = [];
     let originals = [];
     let trending = [];
 
     useEffect(() => {
-        db.collection('movies').onSnapshot((snapshot) => {
+        const unsubscribe = onSnapshot(collection(db, "movies"), (snapshot) => {
             snapshot.docs.map((doc) => {
                 switch(doc.data().type){
                     case "recommend":
@@ -37,19 +38,21 @@ const Home = (props) => {
                         break;
                 }
             });
+
+            dispatch(
+                setMovies({
+                    recommend: recommends,
+                    newDisney: newDisneys,
+                    original: originals,
+                    trending: trending
+                })
+            );
         });
-
-        dispatch(
-            setMovies({
-                recommend: recommends,
-                newDisney: newDisneys,
-                original: originals,
-                trending: trending
-            })
-        );
-    }, [userName]);
+        return () => unsubscribe();
+    }, [userName]); 
 
 
+    // display all things which are inside the container 
     return (
     <Container>
         <ImgSlider />

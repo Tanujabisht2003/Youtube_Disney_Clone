@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+// in wrap components an image tag is there to display image and video tag with 3 attributes that is
+// autoplay to play videos automatically and loop them and playinline which is they work on mobile also
 const Viewers = () => {
     return (
         <Container>
