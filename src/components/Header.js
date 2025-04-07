@@ -14,8 +14,8 @@ const Header = (props) => {
     // used to navigate between pages
     const navigate = useNavigate();
     // Fetches the logged-in user's name and profile picture from Redux.
-    const userName = useSelector(selectUserName);
     const userPhoto = useSelector(selectUserPhoto);
+    const userName = useSelector(selectUserName);
 
     // this function only works when username will changes
     useEffect(() => {
@@ -47,6 +47,7 @@ const Header = (props) => {
             })
         .catch((err) => alert(err.message));
         }
+        console.log("User Photo URL:", userPhoto);
     };
     const setUser = (user) => {
         dispatch(
